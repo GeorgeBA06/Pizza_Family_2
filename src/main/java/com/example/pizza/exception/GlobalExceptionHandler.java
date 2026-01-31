@@ -39,6 +39,18 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, Object>> handleUserNotFound(UserNotFoundException e){
         return buildErrorResponse(HttpStatus.NOT_FOUND, "User not found", e.getMessage());}
 
+
+
+    @ExceptionHandler(IngredientAlreadyExistsException.class)
+    public ResponseEntity<Map<String, Object>> handleIngredientAlreadyExists(IngredientAlreadyExistsException e){
+        return buildErrorResponse(HttpStatus.CONFLICT, "Ingredient already exists", e.getMessage());
+    }
+
+    @ExceptionHandler(IngredientNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleIngredientNotFoundException(IngredientAlreadyExistsException e){
+        return buildErrorResponse(HttpStatus.NOT_FOUND, "Ingredient not found", e.getMessage());
+    }
+
     private ResponseEntity<Map<String,Object>> buildErrorResponse(HttpStatus status, String message, Object o){
         Map<String, Object> map = new HashMap<>();
         map.put("timestamp", LocalDateTime.now());
