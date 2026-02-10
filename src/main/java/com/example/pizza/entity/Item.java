@@ -37,9 +37,11 @@ public class Item {
             nullable = true)
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    @ToString.Exclude
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "category_id")
+//    @ToString.Exclude
+    @Column(name = "category")
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
